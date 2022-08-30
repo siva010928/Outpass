@@ -1,0 +1,1 @@
+web gunicorn outpass.wgsi:application --log-file -
