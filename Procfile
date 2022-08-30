@@ -1,1 +1,1 @@
-web gunicorn outpass.wgsi:application --log-file -
+web gunicorn outpass.wsgi:application --log-file -
