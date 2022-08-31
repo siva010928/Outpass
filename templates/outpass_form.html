@@ -1,14 +1,20 @@
 {% extends 'base.html' %}
 {% load tailwind_filters %}
-
+{% load crispy_forms_tags %}
 {% block content %}
+{% if no_short %}
+    <script>alert("you have no shortcuts please enter full details")</script>  
+{% endif %}
+{% if pass %}
+    <script>alert("pass sent")</script>  
+{% endif %}
 
 <div class="max-w-lg mx-auto">
 
     <div class="py-5 border-t border-gray-200">
         <h1 class="text-4xl text-gray-800">Outpass Form</h1>
     </div>
-    <form method="post" class="mt-2">
+    <form method="post" class="mt-5">
         {% csrf_token %}
         {{ form | crispy }}
         <button type='submit' class="w-full text-white bg-blue-500 hover:bg-blue-600 px-3 py-2 rounded-md">
