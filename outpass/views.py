@@ -18,19 +18,6 @@ def outpass_form_view(request):
         form=OutpassForm(request.POST)
         if form.is_valid():
 
-            # Dict={
-            #     '1':{
-            #         'name':'Siva Prakash K',
-            #         'roll_number':'19BCS073',
-            #         'email':'sivaprakash.19cs@kct.ac.in',
-            #     },
-            #     '2':{
-            #         'name':'Tharun Kumar',
-            #         'roll_number':'19BCS011',
-            #         'email':'sivaprakash.19cs@kct.ac.in',
-            #     },
-                
-            # }
             
             context={
                 'name':form.cleaned_data['name'],
@@ -61,8 +48,7 @@ def outpass_form_view(request):
             Student_name=student.name
             Student_email=student.email
             Student_roll=student.roll_number
-            # if context['name'] in Dict.keys():
-            #     context.update(Dict[context['name']])
+
             
             if not student.isAllowed:
                 subject="Fake Pass"
