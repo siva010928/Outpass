@@ -61,6 +61,7 @@ def outpass_form_view(request):
             subject=f"Outing Request Approved- {student.name} {student.roll_number}"
             from_email='Hostel KCT'
             recipient_list=[student.email,]
+            # recipient_list=['sivaprakash.19cs@kct.ac.in',]
             html_message = loader.render_to_string('outpass_body.html', context)
 
             print(subject,recipient_list,html_message)
