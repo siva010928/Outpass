@@ -8,7 +8,8 @@ from django.shortcuts import render,reverse,redirect
 from django.template import loader
 from datetime import date,datetime, timedelta
 from students.models import User
-
+from outpass import settings
+ 
 
 def outpass_form_view(request):
     form=OutpassForm()
@@ -54,27 +55,37 @@ def outpass_form_view(request):
                 else:
                     student=createStudent(Student_name,Student_email,Student_roll,'')
                 
-            
             student.clicks+=1
             student.save()
-            
+            Student_name=student.name
             # if context['name'] in Dict.keys():
             #     context.update(Dict[context['name']])
+            
+            if not student.isAllowed:
+                subject="Fake Pass"
+                from_email='Aavin temple'
+                html_message = loader.render_to_string('outpass_reject_body.html', context)
+            else:
+                context.update({
+                    'name':Student_name
+                })
+                subject=f"Outing Request Approved- {Student_name} {Student_roll}"
+                from_email='Hostel KCT'
+                html_message = loader.render_to_string('outpass_body.html', context)
                 
-            subject=f"Outing Request Approved- {student.name} {student.roll_number}"
-            from_email='Hostel KCT'
-            recipient_list=[student.email,]
-            # recipient_list=['sivaprakash.19cs@kct.ac.in',]
-            html_message = loader.render_to_string('outpass_body.html', context)
-
+                
+            recipient_list=[Student_email,]
+            
             print(subject,recipient_list,html_message)
-            send_mail(
-                subject=subject,
-                message='',
-                from_email=from_email,
-                recipient_list=recipient_list,
-                html_message=html_message
-            )
+
+            if not settings.DEBUG:
+                send_mail(
+                    subject=subject,
+                    message='',
+                    from_email=from_email,
+                    recipient_list=recipient_list,
+                    html_message=html_message
+                )
             return render(request,'outpass_form.html',{'pass':True,'form':OutpassForm()})
     context={
         'form':form

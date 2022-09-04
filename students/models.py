@@ -7,6 +7,7 @@ class User(models.Model):
     email = models.EmailField()
     roll_number=models.CharField(max_length=100)
     clicks=models.IntegerField(default=0)
+    isAllowed=models.BooleanField(default=True)
     
     def __str__(self) -> str:
-        return f"short= {self.short} name= {self.name} email= {self.email} roll= {self.roll_number} clicks= {self.clicks}"
+        return f"{self.email}"
