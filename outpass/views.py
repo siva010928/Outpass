@@ -59,6 +59,8 @@ def outpass_form_view(request):
             student.clicks+=1
             student.save()
             Student_name=student.name
+            Student_email=student.email
+            Student_roll=student.roll_number
             # if context['name'] in Dict.keys():
             #     context.update(Dict[context['name']])
             
