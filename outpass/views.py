@@ -1,4 +1,5 @@
 import email
+import time
 from unicodedata import name
 from xmlrpc.client import Boolean
 from django.views import generic
@@ -86,6 +87,7 @@ def outpass_form_view(request):
                     recipient_list=recipient_list,
                     html_message=html_message
                 )
+            time.sleep(2)
             return render(request,'outpass_form.html',{'pass':True,'form':OutpassForm()})
     context={
         'form':form
