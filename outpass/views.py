@@ -64,13 +64,13 @@ def outpass_form_view(request):
             html_message = loader.render_to_string('outpass_body.html', context)
 
             print(subject,recipient_list,html_message)
-            # send_mail(
-            #     subject=subject,
-            #     message='',
-            #     from_email=from_email,
-            #     recipient_list=recipient_list,
-            #     html_message=html_message
-            # )
+            send_mail(
+                subject=subject,
+                message='',
+                from_email=from_email,
+                recipient_list=recipient_list,
+                html_message=html_message
+            )
             return render(request,'outpass_form.html',{'pass':True,'form':OutpassForm()})
     context={
         'form':form
