@@ -1,5 +1,6 @@
 import email
 from unicodedata import name
+from xmlrpc.client import Boolean
 from django.views import generic
 from django.core.mail import send_mail
 from .forms import OutpassForm
@@ -37,19 +38,21 @@ def outpass_form_view(request):
                 'time':(datetime.now()+timedelta(minutes=-5)).strftime("%I:%M %p")
                 
             }
-            if(context['name'].isnumeric()):
-                if not User.objects.filter(short=context['name']).exists():
+            
+            Student_name=context['name']
+            Student_email=context['email']
+            Student_roll=context['roll_number']
+            
+            if(Student_name.isnumeric()):
+                if not shortExists(Student_name):
                     return render(request,'outpass_form.html',{'no_short':True,'form':OutpassForm()})
                 else :
-                    student=User.objects.get(short=context['name'])
+                    student=getStudentByShort(Student_name)
             else:
-                if  User.objects.filter(email=context['email']).exists():
-                    student=User.objects.get(email=context['email'])
+                if  emailExists(Student_email):
+                    student=getStudentByEmail(Student_email)
                 else:
-                    student=User.objects.create(name=context['name'],
-                                                email=context['email'],
-                                                roll_number=context['roll_number'],
-                                                short='')
+                    student=createStudent(Student_name,Student_email,Student_roll,'')
                 
             
             student.clicks+=1
@@ -77,3 +80,26 @@ def outpass_form_view(request):
         'form':form
     }
     return render(request,'outpass_form.html',context)
+
+def emailExists(email)->Boolean:
+    if  User.objects.filter(email=email).exists():
+        return True
+    return False
+
+
+def shortExists(name)->Boolean:
+     if User.objects.filter(short=name).exists():
+         return True
+     return False
+ 
+def  getStudentByShort(name):
+    return User.objects.get(short=name)
+
+def  getStudentByEmail(email):
+    return User.objects.get(email=email)
+
+def createStudent(name,email,roll_number,short):
+    return User.objects.create(name=name,
+                                                email=email,
+                                                roll_number=roll_number,
+                                                short=short)
