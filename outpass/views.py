@@ -31,17 +31,24 @@ def outpass_form_view(request):
             Student_name=context['name']
             Student_email=context['email']
             Student_roll=context['roll_number']
+            validDomain=Student_email[-9:]=='kct.ac.in'
             
             if(Student_name.isnumeric()):
                 if not shortExists(Student_name):
-                    return render(request,'outpass_form.html',{'no_short':True,'form':OutpassForm()})
+                    return render(request,'outpass_form.html',{'alert_msg':'you have no shortcuts please enter full details','form':OutpassForm()})
                 else :
                     student=getStudentByShort(Student_name)
+
             else:
                 if  emailExists(Student_email):
                     student=getStudentByEmail(Student_email)
                 else:
-                    student=createStudent(Student_name,Student_email,Student_roll,'')
+                    if validDomain:
+                        student=createStudent(Student_name,Student_email,Student_roll,'')
+                    
+            if ((not Student_name.isnumeric()) and (not validDomain)):
+                    return render(request,'outpass_form.html',{'alert_msg':'only valid email','form':OutpassForm()})
+
                 
             student.clicks+=1
             student.save()
@@ -75,8 +82,8 @@ def outpass_form_view(request):
                     recipient_list=recipient_list,
                     html_message=html_message
                 )
-            time.sleep(2)
-            return render(request,'outpass_form.html',{'pass':True,'form':OutpassForm()})
+                time.sleep(2)
+            return render(request,'outpass_form.html',{'alert_msg':'Pass sent','form':OutpassForm()})
     context={
         'form':form
     }

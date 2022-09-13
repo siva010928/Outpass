@@ -2,11 +2,8 @@
 {% load tailwind_filters %}
 {% load crispy_forms_tags %}
 {% block content %}
-{% if no_short %}
-    <script>alert("you have no shortcuts please enter full details")</script>  
-{% endif %}
-{% if pass %}
-    <script>alert("pass sent")</script>  
+{% if alert_msg %}
+    <script>alert('{{alert_msg}}')</script>   
 {% endif %}
 
 <div class="max-w-lg mx-auto">
