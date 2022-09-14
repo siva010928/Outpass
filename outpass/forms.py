@@ -1,4 +1,5 @@
 from django import forms
+from captcha.fields import ReCaptchaField
 
 class OutpassForm(forms.Form):
     name=forms.CharField(
@@ -10,4 +11,6 @@ class OutpassForm(forms.Form):
     roll_number=forms.CharField(max_length=50,required=False,label='Roll Number')
     
     email=forms.EmailField(required=False,label='Email')
+    
+    captcha = ReCaptchaField()
     

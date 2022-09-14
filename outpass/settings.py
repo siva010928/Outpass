@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-iw3s^a&$=v%g&^4@j-rg2__9-t1@q4j54avaff$0k58$-d3_+r
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ENVIRONMENT=False
+ENVIRONMENT=True
 
 ALLOWED_HOSTS = ['*']
 
@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     'students',
+    
+    'captcha',
     
     'crispy_forms',
     'crispy_tailwind',
@@ -171,3 +173,7 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = 'tailwind'
 CRISPY_TEMPLATE_PACK = 'tailwind'
 
 
+
+# ReCaptcha
+RECAPTCHA_PUBLIC_KEY = '6LczkPshAAAAACLxfZygMqUCaTTRvx8gx_hp8uiX'
+RECAPTCHA_PRIVATE_KEY = '6LczkPshAAAAAI4ZEo4umex--PZ-jLF8-BWe6GJR'
