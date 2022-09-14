@@ -74,7 +74,7 @@ def outpass_form_view(request):
             
             print(subject,recipient_list,html_message)
 
-            if not settings.DEBUG:
+            if not settings.ENVIRONMENT:
                 send_mail(
                     subject=subject,
                     message='',

@@ -25,8 +25,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-iw3s^a&$=v%g&^4@j-rg2__9-t1@q4j54avaff$0k58$-d3_+r'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-
+DEBUG = True
+ENVIRONMENT=False
 
 ALLOWED_HOSTS = ['*']
 
@@ -91,7 +91,7 @@ WSGI_APPLICATION = 'outpass.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-if(DEBUG):
+if(ENVIRONMENT):
 
     DATABASES = {
         'default': {
