@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-iw3s^a&$=v%g&^4@j-rg2__9-t1@q4j54avaff$0k58$-d3_+r
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ENVIRONMENT=True
+ENVIRONMENT=False
 
 ALLOWED_HOSTS = ['*']
 
@@ -175,9 +175,5 @@ CRISPY_TEMPLATE_PACK = 'tailwind'
 
 
 # ReCaptcha
-if ENVIRONMENT:
-    RECAPTCHA_PUBLIC_KEY = '6LczkPshAAAAACLxfZygMqUCaTTRvx8gx_hp8uiX'
-    RECAPTCHA_PRIVATE_KEY = '6LczkPshAAAAAI4ZEo4umex--PZ-jLF8-BWe6GJR'
-else:
-    RECAPTCHA_PUBLIC_KEY = '6Le3G_whAAAAAHpdblR2k5HpLancLZ0dMY9FpsTv'
-    RECAPTCHA_PRIVATE_KEY = '6Le3G_whAAAAAFoCddhS91QR4wAFeCqTyBD1GDDk'
+RECAPTCHA_PUBLIC_KEY = '6Le3G_whAAAAAHpdblR2k5HpLancLZ0dMY9FpsTv'
+RECAPTCHA_PRIVATE_KEY = '6Le3G_whAAAAAFoCddhS91QR4wAFeCqTyBD1GDDk'
