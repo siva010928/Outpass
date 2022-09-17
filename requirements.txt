@@ -1,5 +1,6 @@
 asgiref==3.5.2
 crispy-tailwind==0.5.0
+dbsettings==0.9.6
 dj-database-url==1.0.0
 Django==4.1
 django-crispy-forms==1.14.0
