@@ -33,41 +33,41 @@ def outpass_form_view(request):
             Student_roll=context['roll_number']
             validDomain=Student_email[-9:]=='kct.ac.in'
             
-            if(Student_name.isnumeric()):
-                if not shortExists(Student_name):
-                    return render(request,'outpass_form.html',{'alert_msg':'you have no shortcuts please enter full details','form':OutpassForm()})
-                else :
-                    student=getStudentByShort(Student_name)
+            # if(Student_name.isnumeric()):
+            #     if not shortExists(Student_name):
+            #         return render(request,'outpass_form.html',{'alert_msg':'you have no shortcuts please enter full details','form':OutpassForm()})
+            #     else :
+            #         student=getStudentByShort(Student_name)
 
-            else:
-                if  emailExists(Student_email):
-                    student=getStudentByEmail(Student_email)
-                else:
-                    if validDomain:
-                        student=createStudent(Student_name,Student_email,Student_roll,'')
+            # else:
+            #     if  emailExists(Student_email):
+            #         student=getStudentByEmail(Student_email)
+            #     else:
+            #         if validDomain:
+            #             student=createStudent(Student_name,Student_email,Student_roll,'')
                     
-            if ((not Student_name.isnumeric()) and (not validDomain)):
-                    return render(request,'outpass_form.html',{'alert_msg':'only valid email','form':OutpassForm()})
+            # if ((not Student_name.isnumeric()) and (not validDomain)):
+            #         return render(request,'outpass_form.html',{'alert_msg':'only valid email','form':OutpassForm()})
 
                 
-            student.clicks+=1
-            student.save()
-            Student_name=student.name
-            Student_email=student.email
-            Student_roll=student.roll_number
+            # student.clicks+=1
+            # student.save()
+            # Student_name=student.name
+            # Student_email=student.email
+            # Student_roll=student.roll_number
 
             
-            if not student.isAllowed:
-                subject="Fake Pass"
-                from_email='Aavin temple'
-                html_message = loader.render_to_string('outpass_reject_body.html', context)
-            else:
-                context.update({
-                    'name':Student_name
-                })
-                subject=f"Outing Request Approved- {Student_name} {Student_roll}"
-                from_email='Hostel KCT'
-                html_message = loader.render_to_string('outpass_body.html', context)
+            # if not student.isAllowed:
+            #     subject="Fake Pass"
+            #     from_email='Aavin temple'
+            #     html_message = loader.render_to_string('outpass_reject_body.html', context)
+            # else:
+            # context.update({
+            #         'name':Student_name
+            #     })
+            subject=f"Outing Request Approved- {Student_name} {Student_roll}"
+            from_email='Hostel KCT'
+            html_message = loader.render_to_string('outpass_body.html', context)
                 
                 
             recipient_list=[Student_email,]
