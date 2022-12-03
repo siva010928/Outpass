@@ -8,7 +8,7 @@ from .forms import OutpassForm
 from django.shortcuts import render,reverse,redirect
 from django.template import loader
 from datetime import date,datetime, timedelta
-from students.models import User
+# from students.models import User
 from outpass import settings
  
 
