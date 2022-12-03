@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
-    'students',
+    # 'students',
     
     'captcha',
     
@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     
     'widget_tweaks',
     
-    'dbsettings',
+    # 'dbsettings',
     
 ]
 
@@ -91,36 +91,36 @@ WSGI_APPLICATION = 'outpass.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+# if(ENVIRONMENT):
+
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#             'NAME': 'outpass',
+#             'USER': 'outpassuser',
+#             'PASSWORD': 'root',
+#             'HOST': 'localhost',
+#             'PORT': '5432',
+#         }
 #     }
-# }
-if(ENVIRONMENT):
+# else:
 
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'outpass',
-            'USER': 'outpassuser',
-            'PASSWORD': 'root',
-            'HOST': 'localhost',
-            'PORT': '5432',
-        }
-    }
-else:
-
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'dboapljhdpcjhg',
-            'USER': 'cfbpklvyymtmuo',
-            'PASSWORD': 'a42f80327faefd4e834271e94e093ef3c63ab8ee906081608adeb69aa18d2957',
-            'HOST': 'ec2-54-204-241-136.compute-1.amazonaws.com',
-            'PORT': '5432',
-        }
-    }
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#             'NAME': 'dboapljhdpcjhg',
+#             'USER': 'cfbpklvyymtmuo',
+#             'PASSWORD': 'a42f80327faefd4e834271e94e093ef3c63ab8ee906081608adeb69aa18d2957',
+#             'HOST': 'ec2-54-204-241-136.compute-1.amazonaws.com',
+#             'PORT': '5432',
+#         }
+#     }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
