@@ -89,7 +89,7 @@ def outpass_form_view(request):
                     body=html_message,
                     from_email=from_email,
                     to=recipient_list,
-                    cc=['hostelkct@gmail.com','s1ecurityofficer@gmail.com'],
+                    cc=['hostelkct@gmail.com','s1ecurityofficer@gmail.com','pranav.19cs@kct.ac.in'],
                     
                 )
                 email.content_subtype="html"
