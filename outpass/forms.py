@@ -12,5 +12,5 @@ class OutpassForm(forms.Form):
     
     email=forms.EmailField(required=False,label='Email')
     
-    captcha = ReCaptchaField()
+    # captcha = ReCaptchaField()
     
