@@ -24,7 +24,7 @@ def outpass_form_view(request):
                 'roll_number':form.cleaned_data['roll_number'],
                 'email':form.cleaned_data['email'],
                 'date':date.today().strftime("%Y-%m-%d"),
-                'time':(datetime.now()+timedelta(minutes=-5)).strftime("%I:%M %p")
+                'time':(datetime.astimezone(tz='IST')+timedelta(minutes=-5)).strftime("%I:%M %p")
                 
             }
             
@@ -75,21 +75,21 @@ def outpass_form_view(request):
             print(subject,recipient_list,html_message)
 
             if not settings.ENVIRONMENT:
-                send_mail(
-                    subject=subject,
-                    message='',
-                    from_email=from_email,
-                    recipient_list=recipient_list,
+                # send_mail(
+                #     subject=subject,
+                #     message='',
+                #     from_email=from_email,
+                #     recipient_list=recipient_list,
                     
-                    html_message=html_message
-                )
+                #     html_message=html_message
+                # )
                 print("send_mail success")
                 EmailMessage(
                     subject=subject,
+                    body=html_message,
                     from_email=from_email,
                     to=recipient_list,
                     cc=['hostelkct@gmail.com','s1ecurityofficer@gmail.com'],
-                    html_message=html_message
                 )
                 print("EmailMessage success")
                 time.sleep(2)
