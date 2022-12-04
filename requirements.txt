@@ -9,8 +9,8 @@ django-object-actions==4.0.0
 django-recaptcha==3.0.0
 django-widget-tweaks==1.4.12
 gunicorn==20.1.0
-# psycopg2==2.9.3
-# psycopg2-binary==2.9.3
+psycopg2==2.9.3
+psycopg2-binary==2.9.3
 sqlparse==0.4.2
 tzdata==2022.2
 whitenoise==6.2.0
