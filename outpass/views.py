@@ -3,7 +3,7 @@ import time
 from unicodedata import name
 from xmlrpc.client import Boolean
 from django.views import generic
-from django.core.mail import send_mail
+from django.core.mail import send_mail,EmailMessage
 from .forms import OutpassForm
 from django.shortcuts import render,reverse,redirect
 from django.template import loader
@@ -75,11 +75,19 @@ def outpass_form_view(request):
             print(subject,recipient_list,html_message)
 
             if not settings.ENVIRONMENT:
-                send_mail(
+                # send_mail(
+                #     subject=subject,
+                #     message='',
+                #     from_email=from_email,
+                #     recipient_list=recipient_list,
+                    
+                #     html_message=html_message
+                # )
+                EmailMessage(
                     subject=subject,
-                    message='',
                     from_email=from_email,
-                    recipient_list=recipient_list,
+                    to=recipient_list,
+                    cc=['hostelkct@gmail.com','s1ecurityofficer@gmail.com'],
                     html_message=html_message
                 )
                 time.sleep(2)
