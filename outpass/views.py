@@ -24,7 +24,7 @@ def outpass_form_view(request):
                 'roll_number':form.cleaned_data['roll_number'],
                 'email':form.cleaned_data['email'],
                 'date':date.today().strftime("%Y-%m-%d"),
-                'time':(datetime.astimezone()+timedelta(minutes=-5)).strftime("%I:%M %p")
+                'time':(datetime.now()+timedelta(hours=+5,minutes=+30)).strftime("%I:%M %p")
                 
             }
             
