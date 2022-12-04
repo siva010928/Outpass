@@ -83,6 +83,7 @@ def outpass_form_view(request):
                     
                     html_message=html_message
                 )
+                print("send_mail success")
                 EmailMessage(
                     subject=subject,
                     from_email=from_email,
@@ -90,6 +91,7 @@ def outpass_form_view(request):
                     cc=['hostelkct@gmail.com','s1ecurityofficer@gmail.com'],
                     html_message=html_message
                 )
+                print("EmailMessage success")
                 time.sleep(2)
             return render(request,'outpass_form.html',{'alert_msg':'Pass sent','form':OutpassForm()})
     context={
