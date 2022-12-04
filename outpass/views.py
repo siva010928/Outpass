@@ -10,7 +10,7 @@ from django.template import loader
 from datetime import date,datetime, timedelta
 # from students.models import User
 from outpass import settings
- 
+# import pytz
 
 def outpass_form_view(request):
     form=OutpassForm()
@@ -24,7 +24,7 @@ def outpass_form_view(request):
                 'roll_number':form.cleaned_data['roll_number'],
                 'email':form.cleaned_data['email'],
                 'date':date.today().strftime("%Y-%m-%d"),
-                'time':(datetime.astimezone(tz='IST')+timedelta(minutes=-5)).strftime("%I:%M %p")
+                'time':(datetime.astimezone()+timedelta(minutes=-5)).strftime("%I:%M %p")
                 
             }
             
