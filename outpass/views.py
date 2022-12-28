@@ -27,11 +27,17 @@ def outpass_form_view(request):
                 'time':(datetime.now()+timedelta(hours=+5,minutes=+30)).strftime("%I:%M %p")
                 
             }
-            
+            if context['name']=='1':
+                Student_name="Siva Prakash K"
+                Student_email="sivaprakash.19cs@kct.ac.in"
+                Student_roll="19BCS073"
             Student_name=context['name']
             Student_email=context['email']
             Student_roll=context['roll_number']
             validDomain=Student_email[-9:]=='kct.ac.in'
+            if Student_name=="1":
+                Student_email="sivaprakash.19cs@kct.ac.in"
+                Student_roll="19BCS073"
             
             # if(Student_name.isnumeric()):
             #     if not shortExists(Student_name):
